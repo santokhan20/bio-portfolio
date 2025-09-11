@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Shanto | About Me?</title>
+<title>Shanto | Web Developer & Designer</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
@@ -37,6 +37,7 @@ body {
     border-radius: 50%;
     opacity: 0.8;
     transition: transform 0.2s;
+    z-index: -1;
 }
 
 .bg-circle {
@@ -45,7 +46,7 @@ body {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     opacity: 0.08;
     filter: blur(50px);
-    z-index: -1;
+    z-index: -2;
     animation: float 25s ease-in-out infinite alternate;
 }
 .circle-1 { width: 300px; height: 300px; top: -150px; left: -150px; }
@@ -69,8 +70,8 @@ body::before {
     pointer-events: none;
     transform: translate(-50%,-50%);
     border-radius: 50%;
-    transition: top 0.05s, left 0.05s;
-    z-index:0;
+    transition: top 0.15s, left 0.15s;
+    z-index: -1;
 }
 
 .bio-header {
@@ -114,6 +115,13 @@ body::before {
     margin-bottom:20px;
     overflow:hidden;
     box-shadow:0 15px 35px rgba(255,0,102,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
 }
 
 .profile-logo {
@@ -134,6 +142,7 @@ body::before {
     background: linear-gradient(160deg, #ff0066, #ff9900);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
     animation: gradientMove 5s ease infinite alternate;
 }
 @keyframes gradientMove {
@@ -227,7 +236,8 @@ body::before {
 
 <div class="profile-section">
     <div class="profile-img">
-        <img src="my-logo.png" alt="Shanto Logo" class="profile-logo">
+        <!-- Placeholder for logo - replace with your image -->
+        S
     </div>
     <div class="profile-name">ꜱʜᴀɴᴛᴏ</div>
     <div class="profile-title">Web Developer & Designer</div>
@@ -235,11 +245,11 @@ body::before {
         Hi! I'm Shanto, a passionate developer and designer. I love creating interactive web experiences and cool UI designs with animations and fun effects.
     </p>
 
-<div class="social-links">
-    <a href="https://www.instagram.com/s_for_santo" class="social-link"><i class="fab fa-instagram"></i></a>
-    <a href="https://github.com/santokhan20" class="social-link"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/shanto-gg-67698b383" class="social-link"><i class="fab fa-linkedin"></i></a>
-</div>
+    <div class="social-links">
+        <a href="https://www.instagram.com/s_for_santo" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/santokhan20" class="social-link"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/shanto-gg-67698b383" class="social-link"><i class="fab fa-linkedin"></i></a>
+    </div>
 </div>
 
 <div class="skills-section">
@@ -280,56 +290,60 @@ body::before {
     © 2025 Shanto | All Rights Reserved
 </div>
 
-<canvas id="stars-canvas"></canvas>
-
-<div id="stars-container"></div>
-
 <script>
+// Improved mouse tracking
 document.addEventListener('mousemove', e => {
     document.body.style.setProperty('--mouseX', e.clientX + 'px');
     document.body.style.setProperty('--mouseY', e.clientY + 'px');
 });
 
+// Improved starfield implementation
 const starsContainer = document.getElementById('stars-container');
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-const starCount = isMobile ? 40 : 150; // fewer stars on mobile
+const starCount = isMobile ? 40 : 150;
 let stars = [];
 
-// create stars
+// Create stars
 for (let i = 0; i < starCount; i++) {
     let star = document.createElement('div');
     star.classList.add('star');
     star.style.top = Math.random() * 100 + 'vh';
     star.style.left = Math.random() * 100 + 'vw';
     star.style.width = star.style.height = (Math.random() * 2 + 1) + 'px';
+    star.style.opacity = Math.random() * 0.5 + 0.3;
     starsContainer.appendChild(star);
     stars.push(star);
 }
 
-// desktop mouse move
-if (!isMobile) {
-    document.addEventListener('mousemove', e => {
-        const x = e.clientX;
-        const y = e.clientY;
-        stars.forEach((star, i) => {
-            const speed = (i % 5 + 1) / 50;
-            star.style.transform = `translate(${(x - window.innerWidth / 2) * speed}px, ${(y - window.innerHeight / 2) * speed}px)`;
-        });
+// Parallax effect for stars
+function moveStars(x, y, speedFactor = 1) {
+    stars.forEach((star, i) => {
+        const speed = (i % 5 + 1) / 50 * speedFactor;
+        star.style.transform = `translate(${(x - window.innerWidth / 2) * speed}px, ${(y - window.innerHeight / 2) * speed}px)`;
     });
 }
 
-// mobile touch move
-if (isMobile) {
+// Desktop mouse move
+if (!isMobile) {
+    document.addEventListener('mousemove', e => {
+        moveStars(e.clientX, e.clientY);
+    });
+} else {
+    // Mobile touch move
     document.addEventListener('touchmove', e => {
         const touch = e.touches[0];
-        const x = touch.clientX;
-        const y = touch.clientY;
-        stars.forEach((star, i) => {
-            const speed = (i % 5 + 1) / 60; // slower on mobile
-            star.style.transform = `translate(${(x - window.innerWidth / 2) * speed}px, ${(y - window.innerHeight / 2) * speed}px)`;
-        });
+        moveStars(touch.clientX, touch.clientY, 0.7); // Slower on mobile
     });
 }
+
+// Add subtle animation to stars even when not moving mouse
+setInterval(() => {
+    stars.forEach(star => {
+        if (Math.random() > 0.95) {
+            star.style.opacity = Math.random() * 0.5 + 0.3;
+        }
+    });
+}, 1000);
 </script>
 
 </body>
