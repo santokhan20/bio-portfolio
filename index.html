@@ -280,49 +280,57 @@ body::before {
     © 2025 Shanto | All Rights Reserved
 </div>
 
+<canvas id="stars-canvas"></canvas>
+
+<div id="stars-container"></div>
+
 <script>
+document.addEventListener('mousemove', e => {
+    document.body.style.setProperty('--mouseX', e.clientX + 'px');
+    document.body.style.setProperty('--mouseY', e.clientY + 'px');
+});
+
 const starsContainer = document.getElementById('stars-container');
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
-// fewer stars for mobile to reduce lag
-const starCount = isMobile ? 40 : 120;
+const starCount = isMobile ? 40 : 150; // fewer stars on mobile
 let stars = [];
 
-// generate stars
+// create stars
 for (let i = 0; i < starCount; i++) {
-  let star = document.createElement('div');
-  star.classList.add('star');
-  star.style.top = Math.random() * 100 + 'vh';
-  star.style.left = Math.random() * 100 + 'vw';
-  star.style.width = star.style.height = (Math.random() * 1.5 + 0.5) + 'px';
-  starsContainer.appendChild(star);
-  stars.push(star);
+    let star = document.createElement('div');
+    star.classList.add('star');
+    star.style.top = Math.random() * 100 + 'vh';
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.width = star.style.height = (Math.random() * 2 + 1) + 'px';
+    starsContainer.appendChild(star);
+    stars.push(star);
 }
 
-// desktop: mousemove
+// desktop mouse move
 if (!isMobile) {
-  document.addEventListener('mousemove', e => {
-    const x = e.clientX;
-    const y = e.clientY;
-    stars.forEach((star, i) => {
-      const speed = (i % 5 + 1) / 50;
-      star.style.transform = `translate(${(x - window.innerWidth / 2) * speed}px, ${(y - window.innerHeight / 2) * speed}px)`;
+    document.addEventListener('mousemove', e => {
+        const x = e.clientX;
+        const y = e.clientY;
+        stars.forEach((star, i) => {
+            const speed = (i % 5 + 1) / 50;
+            star.style.transform = `translate(${(x - window.innerWidth / 2) * speed}px, ${(y - window.innerHeight / 2) * speed}px)`;
+        });
     });
-  });
 }
 
-// mobile: touchmove
+// mobile touch move
 if (isMobile) {
-  document.addEventListener('touchmove', e => {
-    const touch = e.touches[0];
-    const x = touch.clientX;
-    const y = touch.clientY;
-    stars.forEach((star, i) => {
-      const speed = (i % 5 + 1) / 60; // slower for mobile
-      star.style.transform = `translate(${(x - window.innerWidth / 2) * speed}px, ${(y - window.innerHeight / 2) * speed}px)`;
+    document.addEventListener('touchmove', e => {
+        const touch = e.touches[0];
+        const x = touch.clientX;
+        const y = touch.clientY;
+        stars.forEach((star, i) => {
+            const speed = (i % 5 + 1) / 60; // slower on mobile
+            star.style.transform = `translate(${(x - window.innerWidth / 2) * speed}px, ${(y - window.innerHeight / 2) * speed}px)`;
+        });
     });
-  });
 }
 </script>
+
 </body>
 </html>
