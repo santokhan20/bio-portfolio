@@ -1,350 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shanto | Web Developer & Designer</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-    --primary: #ff0066;
-    --secondary: #ff9900;
-    --dark: #000000;
-    --darker: #050505;
-    --light: #f9fafb;
-    --gray: #9ca3af;
-    --glass: rgba(255,255,255,0.05);
-    --glass-border: rgba(255,255,255,0.1);
-    --mouseX: 50%;
-    --mouseY: 50%;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanto | Web Developer & Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff0066;
+            --secondary: #ff9900;
+            --dark: #000000;
+            --darker: #050505;
+            --light: #f9fafb;
+            --gray: #9ca3af;
+            --glass: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.1);
+            --mouseX: 50%;
+            --mouseY: 50%;
+        }
 
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-body {
-    background: linear-gradient(160deg, var(--darker), var(--dark));
-    color: var(--light);
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-}
+        body {
+            background: linear-gradient(160deg, var(--darker), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-.star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    transition: transform 0.2s;
-    z-index: -1;
-}
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            transition: transform 0.2s;
+            z-index: -1;
+        }
 
-.bg-circle {
-    position: fixed;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    opacity: 0.08;
-    filter: blur(50px);
-    z-index: -2;
-    animation: float 25s ease-in-out infinite alternate;
-}
-.circle-1 { width: 300px; height: 300px; top: -150px; left: -150px; }
-.circle-2 { width: 500px; height: 500px; bottom: -250px; right: -250px; animation-duration: 30s; }
-.circle-3 { width: 200px; height: 200px; top: 50%; left: 75%; animation-duration: 20s; }
+        .bg-circle {
+            position: fixed;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0.08;
+            filter: blur(50px);
+            z-index: -2;
+            animation: float 25s ease-in-out infinite alternate;
+        }
+        .circle-1 { width: 300px; height: 300px; top: -150px; left: -150px; }
+        .circle-2 { width: 500px; height: 500px; bottom: -250px; right: -250px; animation-duration: 30s; }
+        .circle-3 { width: 200px; height: 200px; top: 50%; left: 75%; animation-duration: 20s; }
 
-@keyframes float {
-    0% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(30px) translateX(30px) rotate(5deg); }
-    100% { transform: translateY(0) translateX(0) rotate(-5deg); }
-}
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(30px) translateX(30px) rotate(5deg); }
+            100% { transform: translateY(0) translateX(0) rotate(-5deg); }
+        }
 
-body::before {
-    content:'';
-    position: fixed;
-    top: var(--mouseY);
-    left: var(--mouseX);
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(255,0,102,0.2) 0%, transparent 80%);
-    pointer-events: none;
-    transform: translate(-50%,-50%);
-    border-radius: 50%;
-    transition: top 0.15s, left 0.15s;
-    z-index: -1;
-}
+        body::before {
+            content:'';
+            position: fixed;
+            top: var(--mouseY);
+            left: var(--mouseX);
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255,0,102,0.2) 0%, transparent 80%);
+            pointer-events: none;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+            transition: top 0.15s, left 0.15s;
+            z-index: -1;
+        }
 
-.bio-header {
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(12px);
-    color:white;
-    padding:20px 5%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position: fixed;
-    width:100%;
-    z-index:100;
-    border-bottom:1px solid var(--glass-border);
-    animation: slideDown 1s ease forwards;
-}
-.bio-logo {
-    font-size: 24px;
-    font-weight:700;
-    background: linear-gradient(135deg,var(--primary),var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-@keyframes slideDown {
-    0% { transform: translateY(-50px); opacity:0; }
-    100% { transform: translateY(0); opacity:1; }
-}
+        .bio-header {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(12px);
+            color:white;
+            padding:20px 5%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            position: fixed;
+            width:100%;
+            z-index:100;
+            border-bottom:1px solid var(--glass-border);
+            animation: slideDown 1s ease forwards;
+        }
+        .bio-logo {
+            font-size: 24px;
+            font-weight:700;
+            background: linear-gradient(135deg,var(--primary),var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes slideDown {
+            0% { transform: translateY(-50px); opacity:0; }
+            100% { transform: translateY(0); opacity:1; }
+        }
 
-.profile-section {
-    padding: 140px 5% 60px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    animation: fadeInUp 1s ease forwards;
-}
+        .profile-section {
+            padding: 140px 5% 60px;
+            text-align:center;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            animation: fadeInUp 1s ease forwards;
+        }
 
-.profile-img {
-    width:180px; height:180px;
-    border-radius:50%;
-    margin-bottom:20px;
-    overflow:hidden;
-    box-shadow:0 15px 35px rgba(255,0,102,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    font-size: 70px;
-    font-weight: bold;
-}
+        .profile-img {
+            width:180px; 
+            height:180px;
+            margin-bottom:20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Removed the gradient background for transparency */
+        }
 
-.profile-logo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: rotateIn 2s ease forwards;
-}
+        .profile-img img {
+            width: 100%;
+            height: auto;
+            max-height: 180px;
+            /* Removed border-radius to keep original logo shape */
+            animation: rotateIn 2s ease forwards;
+            /* Added a subtle shadow for better visibility */
+            filter: drop-shadow(0 5px 15px rgba(255, 0, 102, 0.5));
+        }
 
-@keyframes rotateIn {
-    0% { transform: rotate(-360deg) scale(0); opacity:0; }
-    100% { transform: rotate(0deg) scale(1); opacity:1; }
-}
+        @keyframes rotateIn {
+            0% { transform: rotate(-360deg) scale(0); opacity:0; }
+            100% { transform: rotate(0deg) scale(1); opacity:1; }
+        }
 
-.profile-name {
-    font-size:36px;
-    margin-bottom:8px;
-    background: linear-gradient(160deg, #ff0066, #ff9900);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradientMove 5s ease infinite alternate;
-}
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-.profile-title { font-size:20px; color: var(--secondary); margin-bottom:20px; }
-.profile-description {
-    max-width:750px;
-    color: var(--gray);
-    line-height:1.6;
-    margin-bottom:40px;
-    font-size:16px;
-    animation: fadeIn 2s ease forwards;
-}
+        .profile-name {
+            font-size:36px;
+            margin-bottom:8px;
+            background: linear-gradient(160deg, #ff0066, #ff9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientMove 5s ease infinite alternate;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        .profile-title { font-size:20px; color: var(--secondary); margin-bottom:20px; }
+        .profile-description {
+            max-width:750px;
+            color: var(--gray);
+            line-height:1.6;
+            margin-bottom:40px;
+            font-size:16px;
+            animation: fadeIn 2s ease forwards;
+        }
 
-@keyframes fadeInUp {
-    0% { transform: translateY(50px); opacity:0; }
-    100% { transform: translateY(0); opacity:1; }
-}
-@keyframes fadeIn {
-    0% { opacity:0; transform: translateY(20px);}
-    100% { opacity:1; transform: translateY(0);}
-}
+        @keyframes fadeInUp {
+            0% { transform: translateY(50px); opacity:0; }
+            100% { transform: translateY(0); opacity:1; }
+        }
+        @keyframes fadeIn {
+            0% { opacity:0; transform: translateY(20px);}
+            100% { opacity:1; transform: translateY(0);}
+        }
 
-.social-links { display:flex; gap:15px; margin-bottom:50px; }
-.social-link {
-    width:50px; height:50px;
-    border-radius:50%;
-    background: rgba(31,41,55,0.6);
-    display:flex; align-items:center; justify-content:center;
-    color: var(--light); text-decoration:none;
-    transition: all 0.3s;
-    animation: popUp 0.5s ease forwards;
-}
-.social-link:hover {
-    transform: translateY(-5px) scale(1.2) rotate(-5deg);
-    box-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
-    background: var(--primary);
-}
-@keyframes popUp { 0% { transform: scale(0); opacity:0;} 100% { transform: scale(1); opacity:1;} }
+        .social-links { display:flex; gap:15px; margin-bottom:50px; }
+        .social-link {
+            width:50px; height:50px;
+            border-radius:50%;
+            background: rgba(31,41,55,0.6);
+            display:flex; align-items:center; justify-content:center;
+            color: var(--light); text-decoration:none;
+            transition: all 0.3s;
+            animation: popUp 0.5s ease forwards;
+        }
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.2) rotate(-5deg);
+            box-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
+            background: var(--primary);
+        }
+        @keyframes popUp { 0% { transform: scale(0); opacity:0;} 100% { transform: scale(1); opacity:1;} }
 
-.skills-section { padding:60px 5%; background: rgba(0,0,0,0.3); animation: fadeIn 2s ease forwards; }
-.skills-container { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; max-width:800px; margin:0 auto; }
-.skill {
-    background: rgba(255,0,102,0.2);
-    padding:14px 25px;
-    border-radius:25px;
-    font-weight:500;
-    color: var(--light);
-    transition: all 0.3s, transform 0.5s;
-}
-.skill:hover { background: rgba(255,0,102,0.4); transform: scale(1.2) rotate(-2deg); }
+        .skills-section { padding:60px 5%; background: rgba(0,0,0,0.3); animation: fadeIn 2s ease forwards; }
+        .skills-container { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; max-width:800px; margin:0 auto; }
+        .skill {
+            background: rgba(255,0,102,0.2);
+            padding:14px 25px;
+            border-radius:25px;
+            font-weight:500;
+            color: var(--light);
+            transition: all 0.3s, transform 0.5s;
+        }
+        .skill:hover { background: rgba(255,0,102,0.4); transform: scale(1.2) rotate(-2deg); }
 
-.interests-section { padding:60px 5%; background: rgba(0,0,0,0.5); animation: fadeIn 2s ease forwards; }
-.interests-container { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:30px; max-width:900px; margin:0 auto; }
-.interest-card {
-    background: rgba(31,41,55,0.6);
-    padding:30px;
-    border-radius:15px;
-    text-align:center;
-    transition: all 0.5s;
-    transform-style: preserve-3d;
-}
-.interest-card:hover {
-    transform: translateY(-20px) rotateY(10deg) rotateX(5deg);
-    box-shadow:0 15px 30px rgba(255,0,102,0.4);
-}
-.interest-icon { font-size:40px; color: var(--primary); margin-bottom:15px; }
-.interest-card h3 { font-size:20px; color: var(--light); margin-bottom:12px; }
-.interest-card p { color: var(--gray); line-height:1.6; font-size:14px; }
+        .interests-section { padding:60px 5%; background: rgba(0,0,0,0.5); animation: fadeIn 2s ease forwards; }
+        .interests-container { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:30px; max-width:900px; margin:0 auto; }
+        .interest-card {
+            background: rgba(31,41,55,0.6);
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+            transition: all 0.5s;
+            transform-style: preserve-3d;
+        }
+        .interest-card:hover {
+            transform: translateY(-20px) rotateY(10deg) rotateX(5deg);
+            box-shadow:0 15px 30px rgba(255,0,102,0.4);
+        }
+        .interest-icon { font-size:40px; color: var(--primary); margin-bottom:15px; }
+        .interest-card h3 { font-size:20px; color: var(--light); margin-bottom:12px; }
+        .interest-card p { color: var(--gray); line-height:1.6; font-size:14px; }
 
-.footer { background: var(--darker); color: var(--gray); text-align:center; padding:40px 5%; font-size:14px; }
+        .footer { background: var(--darker); color: var(--gray); text-align:center; padding:40px 5%; font-size:14px; }
 
-@media (max-width:768px){
-    .profile-name { font-size:30px; }
-    .profile-title { font-size:18px; }
-    .interests-container { grid-template-columns: 1fr; }
-}
-</style>
+        @media (max-width:768px){
+            .profile-name { font-size:30px; }
+            .profile-title { font-size:18px; }
+            .interests-container { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-<div id="stars-container"></div>
-<div class="bg-circle circle-1"></div>
-<div class="bg-circle circle-2"></div>
-<div class="bg-circle circle-3"></div>
+    <div id="stars-container"></div>
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+    <div class="bg-circle circle-3"></div>
 
-<div class="bio-header">
-    <div class="bio-logo">ꜱʜᴀɴᴛᴏ</div>
-</div>
-
-<div class="profile-section">
-    <div class="profile-img">
-        <!-- Placeholder for logo - replace with your image -->
-        S
+    <div class="bio-header">
+        <div class="bio-logo">ꜱʜᴀɴᴛᴏ</div>
     </div>
-    <div class="profile-name">ꜱʜᴀɴᴛᴏ</div>
-    <div class="profile-title">Web Developer & Designer</div>
-    <p class="profile-description">
-        Hi! I'm Shanto, a passionate developer and designer. I love creating interactive web experiences and cool UI designs with animations and fun effects.
-    </p>
 
-    <div class="social-links">
-        <a href="https://www.instagram.com/s_for_santo" class="social-link"><i class="fab fa-instagram"></i></a>
-        <a href="https://github.com/santokhan20" class="social-link"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/shanto-gg-67698b383" class="social-link"><i class="fab fa-linkedin"></i></a>
-    </div>
-</div>
-
-<div class="skills-section">
-    <h2 style="text-align:center; font-size:32px; margin-bottom:50px;">My Skills</h2>
-    <div class="skills-container">
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">React</div>
-        <div class="skill">Node.js</div>
-        <div class="skill">UI/UX Design</div>
-        <div class="skill">Graphics Design</div>
-    </div>
-</div>
-
-<div class="interests-section">
-    <h2 style="text-align:center; font-size:32px; margin-bottom:50px;">My Interests</h2>
-    <div class="interests-container">
-        <div class="interest-card">
-            <div class="interest-icon"><i class="fas fa-gamepad"></i></div>
-            <h3>Gaming</h3>
-            <p>I love playing and streaming games in my free time.</p>
+    <div class="profile-section">
+        <div class="profile-img">
+            <!-- Your logo with transparent background -->
+            <img src="my-logo.png" alt="Shanto Logo" class="profile-logo">
         </div>
-        <div class="interest-card">
-            <div class="interest-icon"><i class="fas fa-paint-brush"></i></div>
-            <h3>Design</h3>
-            <p>Creating visually appealing UI/UX designs is my passion.</p>
-        </div>
-        <div class="interest-card">
-            <div class="interest-icon"><i class="fas fa-code"></i></div>
-            <h3>Coding</h3>
-            <p>Building interactive and dynamic websites is what I love.</p>
+        <div class="profile-name">ꜱʜᴀɴᴛᴏ</div>
+        <div class="profile-title">Web Developer & Designer</div>
+        <p class="profile-description">
+            Hi! I'm Shanto, a passionate developer and designer. I love creating interactive web experiences and cool UI designs with animations and fun effects.
+        </p>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/s_for_santo" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/santokhan20" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/shanto-gg-67698b383" class="social-link"><i class="fab fa-linkedin"></i></a>
         </div>
     </div>
-</div>
 
-<div class="footer">
-    © 2025 Shanto | All Rights Reserved
-</div>
+    <div class="skills-section">
+        <h2 style="text-align:center; font-size:32px; margin-bottom:50px;">My Skills</h2>
+        <div class="skills-container">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">React</div>
+            <div class="skill">Node.js</div>
+            <div class="skill">UI/UX Design</div>
+            <div class="skill">Graphics Design</div>
+        </div>
+    </div>
 
-<script>
-// Improved mouse tracking
-document.addEventListener('mousemove', e => {
-    document.body.style.setProperty('--mouseX', e.clientX + 'px');
-    document.body.style.setProperty('--mouseY', e.clientY + 'px');
-});
+    <div class="interests-section">
+        <h2 style="text-align:center; font-size:32px; margin-bottom:50px;">My Interests</h2>
+        <div class="interests-container">
+            <div class="interest-card">
+                <div class="interest-icon"><i class="fas fa-gamepad"></i></div>
+                <h3>Gaming</h3>
+                <p>I love playing and streaming games in my free time.</p>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Design</h3>
+                <p>Creating visually appealing UI/UX designs is my passion.</p>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon"><i class="fas fa-code"></i></div>
+                <h3>Coding</h3>
+                <p>Building interactive and dynamic websites is what I love.</p>
+            </div>
+        </div>
+    </div>
 
-// Improved starfield implementation
-const starsContainer = document.getElementById('stars-container');
-const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-const starCount = isMobile ? 40 : 150;
-let stars = [];
+    <div class="footer">
+        © 2025 Shanto | All Rights Reserved
+    </div>
 
-// Create stars
-for (let i = 0; i < starCount; i++) {
-    let star = document.createElement('div');
-    star.classList.add('star');
-    star.style.top = Math.random() * 100 + 'vh';
-    star.style.left = Math.random() * 100 + 'vw';
-    star.style.width = star.style.height = (Math.random() * 2 + 1) + 'px';
-    star.style.opacity = Math.random() * 0.5 + 0.3;
-    starsContainer.appendChild(star);
-    stars.push(star);
-}
+    <script>
+        document.addEventListener('mousemove', e => {
+            document.body.style.setProperty('--mouseX', e.clientX + 'px');
+            document.body.style.setProperty('--mouseY', e.clientY + 'px');
+        });
 
-// Parallax effect for stars
-function moveStars(x, y, speedFactor = 1) {
-    stars.forEach((star, i) => {
-        const speed = (i % 5 + 1) / 50 * speedFactor;
-        star.style.transform = `translate(${(x - window.innerWidth / 2) * speed}px, ${(y - window.innerHeight / 2) * speed}px)`;
-    });
-}
+        const starsContainer = document.getElementById('stars-container');
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+        const starCount = isMobile ? 40 : 150;
+        let stars = [];
 
-// Desktop mouse move
-if (!isMobile) {
-    document.addEventListener('mousemove', e => {
-        moveStars(e.clientX, e.clientY);
-    });
-} else {
-    // Mobile touch move
-    document.addEventListener('touchmove', e => {
-        const touch = e.touches[0];
-        moveStars(touch.clientX, touch.clientY, 0.7); // Slower on mobile
-    });
-}
-
-// Add subtle animation to stars even when not moving mouse
-setInterval(() => {
-    stars.forEach(star => {
-        if (Math.random() > 0.95) {
+        // Create stars
+        for (let i = 0; i < starCount; i++) {
+            let star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.width = star.style.height = (Math.random() * 2 + 1) + 'px';
             star.style.opacity = Math.random() * 0.5 + 0.3;
+            starsContainer.appendChild(star);
+            stars.push(star);
         }
-    });
-}, 1000);
-</script>
 
+        // Parallax effect for stars
+        function moveStars(x, y, speedFactor = 1) {
+            stars.forEach((star, i) => {
+                const speed = (i % 5 + 1) / 50 * speedFactor;
+                star.style.transform = `translate(${(x - window.innerWidth / 2) * speed}px, ${(y - window.innerHeight / 2) * speed}px)`;
+            });
+        }
+
+        // Desktop mouse move
+        if (!isMobile) {
+            document.addEventListener('mousemove', e => {
+                moveStars(e.clientX, e.clientY);
+            });
+        } else {
+            // Mobile touch move
+            document.addEventListener('touchmove', e => {
+                const touch = e.touches[0];
+                moveStars(touch.clientX, touch.clientY, 0.7);
+            });
+        }
+
+        // Add subtle animation to stars even when not moving mouse
+        setInterval(() => {
+            stars.forEach(star => {
+                if (Math.random() > 0.95) {
+                    star.style.opacity = Math.random() * 0.5 + 0.3;
+                }
+            });
+        }, 1000);
+    </script>
 </body>
 </html>
