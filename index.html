@@ -116,7 +116,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Removed the gradient background for transparency */
+            /* Transparent container */
+            background: transparent;
         }
 
         .profile-img img {
@@ -127,6 +128,34 @@
             animation: rotateIn 2s ease forwards;
             /* Added a subtle shadow for better visibility */
             filter: drop-shadow(0 5px 15px rgba(255, 0, 102, 0.5));
+        }
+
+        /* Transparent logo placeholder */
+        .transparent-logo {
+            width: 180px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 2px dashed rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: var(--gray);
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+            animation: rotateIn 2s ease forwards;
+        }
+
+        .transparent-logo .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--light);
+            margin-bottom: 5px;
+            background: linear-gradient(135deg,var(--primary),var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         @keyframes rotateIn {
@@ -195,6 +224,104 @@
         }
         .skill:hover { background: rgba(255,0,102,0.4); transform: scale(1.2) rotate(-2deg); }
 
+        /* New Creations Section Styles */
+        .creations-section { 
+            padding:60px 5%; 
+            background: rgba(0,0,0,0.4); 
+            animation: fadeIn 2s ease forwards; 
+        }
+        .creations-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .creation-card {
+            background: rgba(31,41,55,0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.5s;
+            transform-style: preserve-3d;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .creation-card:hover {
+            transform: translateY(-15px) rotateY(5deg) rotateX(3deg);
+            box-shadow: 0 15px 30px rgba(255,0,102,0.4);
+        }
+        .creation-img {
+            width: 100%;
+            height: 200px;
+            background: transparent; /* PROFILE TRANSPARENT */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+        .creation-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .creation-card:hover .creation-img img {
+            transform: scale(1.1);
+        }
+        .creation-content {
+            padding: 25px;
+        }
+        .creation-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+        .creation-description {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .creation-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .tech-tag {
+            background: rgba(255,0,102,0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: var(--light);
+        }
+        .creation-links {
+            display: flex;
+            gap: 10px;
+        }
+        .creation-link {
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .visit-link {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 0, 102, 0.3);
+        }
+        .creation-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255,0,102,0.5);
+        }
+
         .interests-section { padding:60px 5%; background: rgba(0,0,0,0.5); animation: fadeIn 2s ease forwards; }
         .interests-container { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:30px; max-width:900px; margin:0 auto; }
         .interest-card {
@@ -219,6 +346,7 @@
             .profile-name { font-size:30px; }
             .profile-title { font-size:18px; }
             .interests-container { grid-template-columns: 1fr; }
+            .creations-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -232,23 +360,22 @@
         <div class="bio-logo">ꜱʜᴀɴᴛᴏ</div>
     </div>
 
-    <div class="profile-section">
-        <div class="profile-img">
-            <!-- Your logo with transparent background -->
-            <img src="my-logo.png" alt="Shanto Logo" class="profile-logo">
-        </div>
-        <div class="profile-name">ꜱʜᴀɴᴛᴏ</div>
-        <div class="profile-title">Web Developer & Designer</div>
-        <p class="profile-description">
-            Hi! I'm Shanto, a passionate developer and designer. I love creating interactive web experiences and cool UI designs with animations and fun effects.
-        </p>
-
-        <div class="social-links">
-            <a href="https://www.instagram.com/s_for_santo" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/santokhan20" class="social-link"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/shanto-gg-67698b383" class="social-link"><i class="fab fa-linkedin"></i></a>
-        </div>
+<div class="profile-section">
+    <div class="profile-img">
+        <img src="my-logo.png" alt="Shanto Logo" class="profile-logo">
     </div>
+    <div class="profile-name">ꜱʜᴀɴᴛᴏ</div>
+    <div class="profile-title">Web Developer & Designer</div>
+    <p class="profile-description">
+        Hi! I'm Shanto, a passionate developer and designer. I love creating interactive web experiences and cool UI designs with animations and fun effects.
+    </p>
+
+    <div class="social-links">
+        <a href="https://www.instagram.com/s_for_santo" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/santokhan20" class="social-link"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/shanto-gg-67698b383" class="social-link"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>
 
     <div class="skills-section">
         <h2 style="text-align:center; font-size:32px; margin-bottom:50px;">My Skills</h2>
@@ -260,6 +387,56 @@
             <div class="skill">Node.js</div>
             <div class="skill">UI/UX Design</div>
             <div class="skill">Graphics Design</div>
+        </div>
+    </div>
+
+    <!-- New Creations Section -->
+    <div class="creations-section">
+        <h2 style="text-align:center; font-size:32px; margin-bottom:50px;">My Creations</h2>
+        <div class="creations-container">
+            <div class="creation-card">
+                <div class="creation-img">
+                    <!-- Replace with your actual project image -->
+                    <img src="NexoraAi.png" alt="Interactive Portfolio">
+                </div>
+                <div class="creation-content">
+                    <h3 class="creation-title">Nexora AI</h3>
+                    <p class="creation-description">
+                        Nexora AI is an advanced conversational platform designed to deliver intelligent, human-like interactions. Built with cutting-edge technologies, it combines sleek design, smooth animations, and responsive UI to create an immersive AI chat experience.
+It's not just a project — it's the next step toward smarter, more intuitive web-based AI systems.
+                    </p>
+                    <div class="creation-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="creation-links">
+                        <a href="https://nexoragg.vercel.app/" class="creation-link visit-link"><i class="fas fa-external-link-alt"></i> Visit</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="creation-card">
+                <div class="creation-img">
+                    <!-- Replace with your actual project image -->
+                    <img src="BioSite.png" alt="Game UI Design">
+                </div>
+                <div class="creation-content">
+                    <h3 class="creation-title">Bio Site</h3>
+                    <p class="creation-description">
+                        A personal portfolio website that highlights my projects, skills, and creative journey as a developer. Designed with a clean, modern layout and smooth animations, it offers visitors an interactive experience while showcasing my work — including Nexora AI and other featured creations.
+                    </p>
+                    <div class="creation-tech">
+                        <span class="tech-tag">UI/UX</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="creation-links">
+                        <a href="https://shantogg.vercel.app/" class="creation-link visit-link"><i class="fas fa-external-link-alt"></i> Visit</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
